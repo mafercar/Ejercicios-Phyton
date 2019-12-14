@@ -1,0 +1,32 @@
+from Electrodomestico import Electrodomestico
+
+CARGA = 5
+
+
+class Lavadora(Electrodomestico):
+
+    def __init__(self, *args):
+        # Un constructor por defecto.
+        super().__init__()
+        self.carga = CARGA
+
+        if (len(args) == 1):
+            # Un constructor donde le pasamos la carga que queremos
+            self.carga = args[0]
+        elif (len(args) == 2):
+            # Un constructor con el precio y peso. El resto por defecto.
+            self.preciobase = args[0]
+            self.peso = args[1]
+        elif(len(args)==5):
+            # Un constructor con todos los atributos heredados y carga
+            super().__init__(args[0], args[1], args[2], args[3])
+            self.carga = args[4]
+
+    def getCarga(self):
+        return self.carga
+
+    def precioFinal(self):
+        super().precioFinal()
+        if (self.carga >= 30):
+            self.preciobase = self.preciobase+50
+        return self.preciobase

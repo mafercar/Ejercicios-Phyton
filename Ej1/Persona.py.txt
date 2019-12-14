@@ -1,0 +1,65 @@
+import random
+
+
+class Persona:
+
+    def __init__(self, nombre="", edad=0, sexo='M', peso=0, altura=0):
+        self.nombre = nombre
+        self.edad = edad
+        self.DNI = self.generaDNI()
+        self.sexo = self.__introducirSexo(sexo)
+        self.peso = peso
+        self.altura = altura
+
+
+    def calcularIMC(self):
+        if(self.peso!=0 and self.altura!=0):
+            pesoideal = self.peso / ((self.altura/100)**2)
+            pesoideal = round(pesoideal, 1)
+            if (pesoideal>=18.5 and pesoideal<=24.9):
+                return 0, pesoideal
+            elif (pesoideal<18.5):
+                return -1, pesoideal
+            elif (pesoideal>25):
+                return 1, pesoideal
+
+
+    def esMayorEdad(self):
+        if (self.edad >= 18):
+            return True
+        else:
+            return False
+
+
+    def __introducirSexo(self, sexo):
+        if (sexo[0] == 'H' or sexo[0] == 'h'):
+            return 'H'
+        else:
+            return 'M'
+
+
+    def toString(self):
+        return self.nombre+", " + str(self.edad) + " años, DNI: " + self.DNI + ", " + self.sexo + ", " + str(self.peso) + " kg, " + str(self.altura) + " cm"
+
+
+    def generaDNI(self):
+        letrasdni = 'TRWAGMYFPDXBNJZSQVHLCKE'
+        num = random.randrange(00000000, 99999999)
+        letra = letrasdni[num % 23]
+        DNI = str(num) + letra
+        return DNI
+
+    def setNombre(self, nombre):
+        self.nombre = nombre
+
+    def setEdad(self, edad):
+        self.edad = edad
+
+    def setPeso(self, peso):
+        self.peso = peso
+
+    def setAltura(self, altura):
+        self.altura = altura
+
+    def setSexo(self, sexo):
+        self.sexo = sexo

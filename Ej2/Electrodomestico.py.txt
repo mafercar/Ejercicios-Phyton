@@ -1,0 +1,81 @@
+# "constantes"
+PRECIOBASE = 100
+COLOR = "BLANCO"
+CONSUMOENERG = 'F'
+PESO = 5
+
+class Electrodomestico:
+
+
+    def __init__(self, preciobase=PRECIOBASE, color=COLOR, consumoenerg=CONSUMOENERG, peso=PESO):
+        self.preciobase = preciobase
+        self.color = color.lower()
+        self.consumoenerg = consumoenerg[0].capitalize()
+        self.peso = peso
+        self.__comprobarConsumoEnergetico()  # comprueba si la letra es correcta
+        self.__comprobarColor() # comprueba si el color es correcto
+
+
+
+    # metodos get
+    def getPreciobase(self):
+        return self.preciobase
+
+    def getColor(self):
+        return self.color
+
+    def getConsumoenerg(self):
+        return self.consumoenerg
+
+    def getPeso(self):
+        return self.peso
+
+    # comprueba que la letra es correcta, sino es correcta usara la letra por defecto. Se invocara al crear el objeto y no sera visible.
+    def __comprobarConsumoEnergetico(self):
+        letras = "ABCDEF"  # letras permitidas
+        if self.consumoenerg.capitalize() not in letras:
+            self.consumoenerg = 'F'
+
+    # ccomprueba que el color es correcto, sino lo es usa el color por defecto. Se invocara al crear el objeto y no sera visible.
+    def __comprobarColor(self):
+        colores = ("blanco", "negro", "rojo", "azul", "gris")
+        if self.color not in colores:
+            self.color = "blanco"
+
+# precioFinal(): según el consumo energético, aumentara su precio, y según su tamaño, también.
+    def precioFinal(self):
+        if(self.consumoenerg=='A'):
+            self.preciobase += 100
+            self.preciobase += self.precioTamano()
+            return self.preciobase
+        elif(self.consumoenerg=='B'):
+            self.preciobase+=80
+            self.preciobase += self.precioTamano()
+            return self.preciobase
+        elif(self.consumoenerg=='C'):
+            self.preciobase += 60
+            self.preciobase += self.precioTamano()
+            return self.preciobase
+        elif(self.consumoenerg=='D'):
+            self.preciobase += 50
+            self.preciobase += self.precioTamano()
+            return self.preciobase
+        elif(self.consumoenerg=='E'):
+            self.preciobase += 30
+            self.preciobase += self.precioTamano()
+            return self.preciobase
+        elif(self.consumoenerg=='F'):
+            self.preciobase += 10
+            self.preciobase += self.precioTamano()
+            return self.preciobase
+
+#precio segun tamaño
+    def precioTamano(self):
+        if (self.peso >= 0 and self.peso <= 19):
+            return 10
+        elif (self.peso >= 20 and self.peso <= 49):
+            return 50
+        elif (self.peso >= 50 and self.peso <= 79):
+            return 80
+        elif (self.peso >= 80):
+            return 100

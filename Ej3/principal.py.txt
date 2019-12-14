@@ -1,0 +1,52 @@
+from Serie import Serie
+from Videojuego import Videojuego
+import operator
+
+# crea dos listas con 5 items para cada una
+listaSerie = [Serie("Muñeca Rusa", 1, "Thriller", "Netflix"),
+              Serie("Chernobyl", 1, "Docudrama", "HBO"),
+              Serie("Killing Eve", 2, "Misterio", "HBO"),
+              Serie("Sex Education", 1, "Comedia", "Netflix"),
+              Serie("The Good Fight", 3, "Drama", "Movistar+")]
+
+listaVideojuego = [Videojuego("Wargroove", 15, "Estrategia", "Chucklefish"),
+                   Videojuego("Death Stranding", 25, "RPG", "Kojima Productions"),
+                   Videojuego("Call of Duty: Modern Warfare", 7, "FPS", "Activision"),
+                   Videojuego("Kingdom Hearts III", 55, "RPG", "Square Enix"),
+                   Videojuego("Sekiro: Shadows Die Twice", 20, "Acción-Aventura", "From Software")]
+
+#entregar series
+listaSerie[0].entregar()
+listaSerie[2].entregar()
+listaSerie[4].entregar()
+contSeriesEntregadas = 0
+for i in range(len(listaSerie)):
+    if (listaSerie[i].entregado == True):
+        # cuento el numero de series y videojuegos entregados
+        contSeriesEntregadas = contSeriesEntregadas + 1
+        # los devuelvo una vez contados
+        listaSerie[i].devolver()
+print(str(contSeriesEntregadas) + " series entregadas.")
+
+#entregar videojuegos
+listaVideojuego[1].entregar()
+listaVideojuego[4].entregar()
+contVideojEntregados = 0
+for i in range(len(listaVideojuego)):
+    if (listaVideojuego[i].entregado == True):
+        contVideojEntregados = contVideojEntregados + 1
+        listaVideojuego[i].devolver()
+
+print(str(contVideojEntregados) + " videojuegos entregados.")
+
+#obtener la serie que más temporadas tiene
+key0=operator.attrgetter("ntemporadas")
+listaOrdenadaSeries= sorted(listaSerie, key=key0, reverse=True)
+print("La serie con más temporadas es: "+listaOrdenadaSeries[0].getTitulo()+", con un total de "+str(listaOrdenadaSeries[0].getNtemporadas())+" temporadas.")
+
+
+#obtener el videojuego que más horas estimadas tiene
+key1=operator.attrgetter("horasest")
+listaOrdenadaVideojuegos= sorted(listaVideojuego, key=key1, reverse=True)
+print("El videojuego que más dura es: "+listaOrdenadaVideojuegos[0].getTitulo()+", con un total de "+str(listaOrdenadaVideojuegos[0].getHorasest())+" horas.")
+

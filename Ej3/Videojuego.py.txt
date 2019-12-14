@@ -1,0 +1,56 @@
+HORASEST = 10
+ENTREGADO = False
+TITULO = ""
+GENERO = ""
+COMPANIA = ""
+
+
+class Videojuego:
+    def __init__(self, *args):
+        # constructor por defecto
+        self.titulo = TITULO
+        self.horasest = HORASEST
+        self.entregado = ENTREGADO
+        self.genero = GENERO
+        self.compania = COMPANIA
+
+        if (len(args) == 2):
+            # constructor con el titulo y el horas estimadas. Resto por defecto
+            self.titulo = args[0]
+            self.horasest = args[1]
+        elif (len(args) == 4):
+            # todos los atributos excepto el entregado
+            self.titulo = args[0]
+            self.horasest = args[1]
+            self.genero = args[2]
+            self.compania = args[3]
+
+    def entregar(self):
+        self.entregado=True
+        
+    def devolver(self):
+        self.entregado=False
+
+    def getTitulo(self):
+        return self.titulo
+
+    def getHorasest(self):
+        return self.horasest
+
+    def getGenero(self):
+        return self.genero
+
+    def getCompania(self):
+        return self.getCompania()
+
+    def setTitulo(self, titulo):
+        self.titulo = titulo
+
+    def setHoraest(self, horasest):
+        self.horasest = horasest
+
+    def setGenero(self, genero):
+        self.genero = genero
+
+    def setCompania(self, compania):
+        self.compania = compania

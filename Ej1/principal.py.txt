@@ -1,0 +1,46 @@
+from Persona import Persona
+#funcion para comprobar facilmente el IMC
+def comprobacionIMC(IMC, nombre):
+    if(IMC!=None):
+        if (IMC[0] == 0):
+            print(nombre + " está su peso ideal. Su IMC es de " + str(IMC[1]))
+        elif (IMC[0] == -1):
+            print(nombre + " está por debajo de su peso ideal. Su IMC es de " + str(IMC[1]))
+        else:
+            print(nombre + " está por encima de su peso ideal. Su IMC es de " + str(IMC[1]))
+
+def mayorEdad(edad, nombre):
+    if(edad>=18):
+        print(nombre+" es mayor de edad")
+    else:
+        print(nombre+" es menor de edad")
+
+
+#objeto 1: variables pedidas por teclado
+persona = Persona(input("Introduce el nombre: "), int(input("Introduce la edad: ")), input("Introduce el sexo: "),
+                  int(input("Introduce el peso en Kg: ")),
+                  int(input("Introduce la altura en cm: ")))
+
+comprobacionIMC(persona.calcularIMC(), persona.nombre)
+mayorEdad(persona.edad, persona.nombre)
+print(persona.toString())
+
+
+#objeto 2: variables pedidas por teclado menos peso y altura
+persona2 = Persona(input("Introduce el nombre: "), int(input("Introduce la edad: ")), input("Introduce el sexo: "))
+
+comprobacionIMC(persona2.calcularIMC(), persona2.nombre)
+mayorEdad(persona2.edad, persona2.nombre)
+print(persona2.toString())
+
+
+#objeto 3: variables por defecto y con setters
+persona3 = Persona()
+persona3.setNombre("Daniel Vilchez")
+persona3.setEdad(22)
+persona3.setPeso(65)
+persona3.setAltura(175)
+
+comprobacionIMC(persona3.calcularIMC(), persona3.nombre)
+mayorEdad(persona3.edad, persona3.nombre)
+print(persona3.toString())

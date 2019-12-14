@@ -1,0 +1,33 @@
+from Electrodomestico import Electrodomestico
+from Lavadora import Lavadora
+from Television import Television
+
+preciototal = precioLavadoras = precioElectrs = precioTvs = 0
+
+listaElect = [Lavadora(180, "azul", "A", 70, 30),
+              Television(500, "rojo", "D", 20, 50, True),
+              Lavadora(250, "gris", "F", 90, 60),
+              Lavadora(160, "blanco", "D", 80, 20),
+              Television(250, "blanca", "A", 10, 20, False),
+              Electrodomestico(300, "rojo", "B", 90),
+              Lavadora(430, "rojo", "E", 120, 50),
+              Television(500, "rojo", "A", 20, 50, True),
+              Electrodomestico(150, "negro", "C", 50),
+              Television(300, "gris", "B", 30, 35, False)]
+
+for i in range(len(listaElect)):
+    if (isinstance(listaElect[i], Lavadora)):
+        #print("Lavadora " + str(i + 1) + ": " + str(listaElect[i].precioFinal()) + "€")
+        precioLavadoras = precioLavadoras + listaElect[i].precioFinal()
+    elif (isinstance(listaElect[i], Television)):
+        #print("Television " + str(i + 1) + ": " + str(listaElect[i].precioFinal()) + "€")
+        precioTvs = precioTvs + listaElect[i].precioFinal()
+    elif (isinstance(listaElect[i], Electrodomestico)):
+        #print("Electrodomesticos " + str(i + 1) + ": " + str(listaElect[i].precioFinal()) + "€")
+        precioElectrs = precioElectrs + listaElect[i].precioFinal()
+
+print("Precio de las lavadoras: "+str(precioLavadoras)+"€")
+print("Precio de las televisiones: "+str(precioTvs)+"€")
+print("Precio de los electrodomésticos: "+str(precioElectrs)+"€")
+preciototal=precioLavadoras+precioElectrs+precioTvs
+print("Precio total: "+str(preciototal)+"€")
